@@ -10,7 +10,7 @@ namespace AxonCFS.Api.Controllers.v1
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    public class Events : ControllerBase
+    public class EventsController : ControllerBase
     {
     }
 }
