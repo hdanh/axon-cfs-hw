@@ -15,19 +15,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{563B6DC8-C25A-4283-9A69-EA87F9E64D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.Api", "src\AxonCFS.Api\AxonCFS.Api.csproj", "{F0DA26B7-18D2-4D5F-B7A1-F43684EE7A81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxonCFS.Api", "src\AxonCFS.Api\AxonCFS.Api.csproj", "{F0DA26B7-18D2-4D5F-B7A1-F43684EE7A81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.Application", "src\AxonCFS.Application\AxonCFS.Application.csproj", "{8769152B-870A-4000-B918-9FF4DB7B4208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxonCFS.Application", "src\AxonCFS.Application\AxonCFS.Application.csproj", "{8769152B-870A-4000-B918-9FF4DB7B4208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.Domain", "src\AxonCFS.Domain\AxonCFS.Domain.csproj", "{9D9B7DE3-F9EA-4762-B210-1EE0E504ABC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxonCFS.Domain", "src\AxonCFS.Domain\AxonCFS.Domain.csproj", "{9D9B7DE3-F9EA-4762-B210-1EE0E504ABC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration Test", "Integration Test", "{934E58F6-586E-423F-AC51-A477715593D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.Infra.Data", "src\AxonCFS.Infra.Data\AxonCFS.Infra.Data.csproj", "{0CA8D377-C28F-4F52-A615-0BEBAE3FDB7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxonCFS.Infra.Data", "src\AxonCFS.Infra.Data\AxonCFS.Infra.Data.csproj", "{0CA8D377-C28F-4F52-A615-0BEBAE3FDB7F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Test", "Unit Test", "{BF229E6B-391C-4B8C-90D6-8DDC55B10176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.UnitTests", "AxonCFS.UnitTests\AxonCFS.UnitTests.csproj", "{576D50AF-5202-4F9A-8046-BC1B9E4A1214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxonCFS.UnitTests", "AxonCFS.UnitTests\AxonCFS.UnitTests.csproj", "{576D50AF-5202-4F9A-8046-BC1B9E4A1214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxonCFS.Infra.IoC", "src\AxonCFS.Infra.IoC\AxonCFS.Infra.IoC.csproj", "{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{576D50AF-5202-4F9A-8046-BC1B9E4A1214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576D50AF-5202-4F9A-8046-BC1B9E4A1214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{576D50AF-5202-4F9A-8046-BC1B9E4A1214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{0CA8D377-C28F-4F52-A615-0BEBAE3FDB7F} = {563B6DC8-C25A-4283-9A69-EA87F9E64D25}
 		{BF229E6B-391C-4B8C-90D6-8DDC55B10176} = {19E947D9-F188-4A08-A984-DF022C1D0B02}
 		{576D50AF-5202-4F9A-8046-BC1B9E4A1214} = {BF229E6B-391C-4B8C-90D6-8DDC55B10176}
+		{99868EC3-EC63-4CC6-9E7A-C6FE1B2363CD} = {563B6DC8-C25A-4283-9A69-EA87F9E64D25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03AF627B-BE78-4198-AF48-011D83239359}

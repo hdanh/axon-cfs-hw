@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AxonCFS.Application\AxonCFS.Application.csproj" />
+    <ProjectReference Include="..\AxonCFS.Domain\AxonCFS.Domain.csproj" />
+    <ProjectReference Include="..\AxonCFS.Infra.Data\AxonCFS.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

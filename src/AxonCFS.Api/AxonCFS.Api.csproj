@@ -13,13 +13,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AxonCFS.Application\AxonCFS.Application.csproj" />
+    <ProjectReference Include="..\AxonCFS.Infra.Data\AxonCFS.Infra.Data.csproj" />
+    <ProjectReference Include="..\AxonCFS.Infra.IoC\AxonCFS.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>
