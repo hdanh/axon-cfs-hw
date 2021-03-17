@@ -8,7 +8,6 @@ namespace AxonCFS.Infra.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEventService, EventService>();
         }
     }

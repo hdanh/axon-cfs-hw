@@ -25,6 +25,7 @@ namespace AxonCFS.Api
             services.AddControllerConfiguration();
             services.AddDatabaseConfiguration(Configuration);
             services.AddSwaggerConfiguration(_hostEnv.ContentRootPath);
+            services.AddIdentityConfig(Configuration.GetValue<string>("IdentityHost"));
             services.AddAutoMapperConfiguration();
             services.AddDependencyInjectionConfiguration();
         }
