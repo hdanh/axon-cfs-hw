@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AxonCFS.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210317094812_Init")]
+    [Migration("20210317181638_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,8 +23,9 @@ namespace AxonCFS.Infra.Data.Migrations
 
             modelBuilder.Entity("AxonCFS.Domain.Models.Agency", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
@@ -37,12 +38,24 @@ namespace AxonCFS.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Agency");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("eff6a082-31e3-412b-b661-bd340eab29b6"),
+                            Code = "Agency1"
+                        },
+                        new
+                        {
+                            Id = new Guid("4b63867c-e27c-41da-9c06-5e10817c1266"),
+                            Code = "Agency2"
+                        });
                 });
 
             modelBuilder.Entity("AxonCFS.Domain.Models.AgencyUser", b =>
                 {
-                    b.Property<string>("AgencyId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("AgencyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -50,15 +63,25 @@ namespace AxonCFS.Infra.Data.Migrations
                     b.HasKey("AgencyId", "UserId");
 
                     b.ToTable("AgencyUser");
+
+                    b.HasData(
+                        new
+                        {
+                            AgencyId = new Guid("eff6a082-31e3-412b-b661-bd340eab29b6"),
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            AgencyId = new Guid("4b63867c-e27c-41da-9c06-5e10817c1266"),
+                            UserId = "2"
+                        });
                 });
 
             modelBuilder.Entity("AxonCFS.Domain.Models.Event", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AgencyId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DispatchTime")
                         .HasColumnType("datetime2");
@@ -69,8 +92,8 @@ namespace AxonCFS.Infra.Data.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ResponderId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ResponderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Tstamp")
                         .IsConcurrencyToken()
@@ -81,8 +104,6 @@ namespace AxonCFS.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AgencyId");
 
                     b.HasIndex("ResponderId");
 
@@ -113,16 +134,14 @@ namespace AxonCFS.Infra.Data.Migrations
 
             modelBuilder.Entity("AxonCFS.Domain.Models.Responder", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AgencyId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("AgencyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Tstamp")
@@ -150,21 +169,17 @@ namespace AxonCFS.Infra.Data.Migrations
 
             modelBuilder.Entity("AxonCFS.Domain.Models.Event", b =>
                 {
-                    b.HasOne("AxonCFS.Domain.Models.Agency", "Agency")
-                        .WithMany("Events")
-                        .HasForeignKey("AgencyId");
-
                     b.HasOne("AxonCFS.Domain.Models.Responder", "Responder")
                         .WithMany("Events")
-                        .HasForeignKey("ResponderId");
+                        .HasForeignKey("ResponderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AxonCFS.Domain.Models.EventType", "Type")
                         .WithMany("Events")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Agency");
 
                     b.Navigation("Responder");
 
@@ -175,7 +190,9 @@ namespace AxonCFS.Infra.Data.Migrations
                 {
                     b.HasOne("AxonCFS.Domain.Models.Agency", "Agency")
                         .WithMany("Responders")
-                        .HasForeignKey("AgencyId");
+                        .HasForeignKey("AgencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Agency");
                 });
@@ -183,8 +200,6 @@ namespace AxonCFS.Infra.Data.Migrations
             modelBuilder.Entity("AxonCFS.Domain.Models.Agency", b =>
                 {
                     b.Navigation("AgencyUsers");
-
-                    b.Navigation("Events");
 
                     b.Navigation("Responders");
                 });

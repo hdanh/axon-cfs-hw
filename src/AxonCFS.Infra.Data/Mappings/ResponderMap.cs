@@ -5,20 +5,12 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 namespace AxonCFS.Infra.Data.Mappings
 {
-    public class EventMap : IEntityTypeConfiguration<Event>
+    public class ResponderMap : IEntityTypeConfiguration<Responder>
     {
-        public void Configure(EntityTypeBuilder<Event> builder)
+        public void Configure(EntityTypeBuilder<Responder> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd().HasValueGenerator<GuidValueGenerator>();
-
-            builder.HasOne(x => x.Type)
-                .WithMany(x => x.Events)
-                .HasForeignKey(x => x.TypeId);
-
-            builder.HasOne(x => x.Responder)
-                .WithMany(x => x.Events)
-                .HasForeignKey(x => x.ResponderId);
         }
     }
 }

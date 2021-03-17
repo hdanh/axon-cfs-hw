@@ -9,11 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BindingModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AxonCFS.Domain\AxonCFS.Domain.csproj" />
+    <ProjectReference Include="..\AxonCFS.Infra.Data\AxonCFS.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

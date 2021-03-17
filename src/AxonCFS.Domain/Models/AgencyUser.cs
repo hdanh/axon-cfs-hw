@@ -8,7 +8,7 @@ namespace AxonCFS.Domain.Models
 {
     public class AgencyUser
     {
-        public string AgencyId { get; set; }
+        public Guid AgencyId { get; set; }
         public Agency Agency { get; set; }
 
         public string UserId { get; set; }

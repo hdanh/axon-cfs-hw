@@ -11,7 +11,7 @@ namespace AxonCFS.Infra.Data.Migrations
                 name: "Agency",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tstamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
@@ -38,7 +38,7 @@ namespace AxonCFS.Infra.Data.Migrations
                 name: "AgencyUser",
                 columns: table => new
                 {
-                    AgencyId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AgencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -56,10 +56,9 @@ namespace AxonCFS.Infra.Data.Migrations
                 name: "Responder",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AgencyId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AgencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Tstamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
@@ -70,31 +69,24 @@ namespace AxonCFS.Infra.Data.Migrations
                         column: x => x.AgencyId,
                         principalTable: "Agency",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Event",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeId = table.Column<int>(type: "int", nullable: false),
                     EventTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DispatchTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ResponderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    AgencyId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ResponderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Tstamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Event", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Event_Agency_AgencyId",
-                        column: x => x.AgencyId,
-                        principalTable: "Agency",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Event_EventType_TypeId",
                         column: x => x.TypeId,
@@ -106,13 +98,28 @@ namespace AxonCFS.Infra.Data.Migrations
                         column: x => x.ResponderId,
                         principalTable: "Responder",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Event_AgencyId",
-                table: "Event",
-                column: "AgencyId");
+            migrationBuilder.InsertData(
+                table: "Agency",
+                columns: new[] { "Id", "Code" },
+                values: new object[] { new Guid("eff6a082-31e3-412b-b661-bd340eab29b6"), "Agency1" });
+
+            migrationBuilder.InsertData(
+                table: "Agency",
+                columns: new[] { "Id", "Code" },
+                values: new object[] { new Guid("4b63867c-e27c-41da-9c06-5e10817c1266"), "Agency2" });
+
+            migrationBuilder.InsertData(
+                table: "AgencyUser",
+                columns: new[] { "AgencyId", "UserId" },
+                values: new object[] { new Guid("eff6a082-31e3-412b-b661-bd340eab29b6"), "1" });
+
+            migrationBuilder.InsertData(
+                table: "AgencyUser",
+                columns: new[] { "AgencyId", "UserId" },
+                values: new object[] { new Guid("4b63867c-e27c-41da-9c06-5e10817c1266"), "2" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_ResponderId",

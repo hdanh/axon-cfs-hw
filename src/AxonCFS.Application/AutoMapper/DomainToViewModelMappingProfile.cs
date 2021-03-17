@@ -10,6 +10,7 @@ namespace AxonCFS.Application.AutoMapper
         {
             CreateMap<Event, EventViewModel>()
                 .ForMember(dest => dest.EventId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.AgencyId, opt => opt.MapFrom(src => src.Responder.AgencyId))
                 .ForMember(dest => dest.EventNumber, opt => opt.MapFrom(src => src.Number))
                 .ForMember(dest => dest.EventTypeCode, opt => opt.MapFrom(src => src.Type.Code))
                 .ForMember(dest => dest.Responder, opt => opt.MapFrom(src => src.Responder.Code));

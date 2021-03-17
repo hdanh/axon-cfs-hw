@@ -16,6 +16,7 @@ namespace AxonCFS.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new AgencyMap());
             modelBuilder.ApplyConfiguration(new EventMap());
             modelBuilder.ApplyConfiguration(new AgencyUserMap());
+            modelBuilder.ApplyConfiguration(new ResponderMap());
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
@@ -26,6 +27,7 @@ namespace AxonCFS.Infra.Data.Context
         }
 
         public DbSet<Agency> Agencies { get; set; }
+        public DbSet<AgencyUser> AgencyUsers { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Responder> Responders { get; set; }
