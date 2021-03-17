@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "f191dccc-dc8f-4da9-a923-37780e86d070",
+		"name": "AxonCFS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Get new token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "scope1",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "ro.client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "bob",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authHost}}/connect/token",
+							"host": [
+								"{{authHost}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Get events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/events?fromDate=2021-03-18&toDate=2021-03-19",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"events"
+							],
+							"query": [
+								{
+									"key": "fromDate",
+									"value": "2021-03-18"
+								},
+								{
+									"key": "toDate",
+									"value": "2021-03-19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"event_number\": \"123456\",\r\n  \"event_code\": \"TEST\",\r\n  \"event_time\": \"2021-03-17T18:09:55.265Z\",\r\n  \"dispatch_time\": \"2021-03-17T18:09:55.265Z\",\r\n  \"responder\": \"Responder_01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authHost",
+			"value": "https://localhost:5001"
+		},
+		{
+			"key": "host",
+			"value": "https://localhost:5000"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjA4MjZCRjIzMkIwQjA4NTJERDA2MDFEQjg4MTk2RjE1IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2MTU5NjE1MzgsImV4cCI6MTYxNTk2NTEzOCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEvcmVzb3VyY2VzIiwiY2xpZW50X2lkIjoicm8uY2xpZW50Iiwic3ViIjoiMiIsImF1dGhfdGltZSI6MTYxNTk2MTUzOCwiaWRwIjoibG9jYWwiLCJqdGkiOiIyMTM1NkRGOTZGMTNGQkVERTA5MEY5ODlCRTNFRkVDOSIsImlhdCI6MTYxNTk2MTUzOCwic2NvcGUiOlsic2NvcGUxIl0sImFtciI6WyJwd2QiXX0.FGXIG9aKUkVodHPIOOxKxDoW25J2oCDAeE5WDqRoZ3Lh3CXjizZowUaUglmPIVu_6e4ghNqUf9kK9VZv8hofDGc2n1d48HTdFXT0X6jMfY9VBfAwT6P_9ED01X8_YR8sTfRdMxdtTaC8o4vwtBiLfdCg07TtoVnz_BPKCPibyF7kEK3R-P9EusqDJLvDxN5z4Zb-jPrhDwKNLuZLy7zzLiqmiaIV9i2ht9StQwnBc5vcWKywM19v-x5nowEdo6bczVM4Q440F6YoRpWePwarzV0-oXLlFbkcMUuGwMYH1AHHJtn83h3Fu7ApKMV-1h2JfqDMrTTto1UpNK5BXIAr3Q"
+		}
+	]
+}
