@@ -9,7 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="BindingModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AxonCFS.Domain\AxonCFS.Domain.csproj" />
   </ItemGroup>
 
 </Project>
