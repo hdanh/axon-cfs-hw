@@ -82,7 +82,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/events?fromDate=2021-03-18&toDate=2021-03-19",
+							"raw": "{{host}}/api/v1/events?fromDate=2021-03-18&toDate=2021-03-19&responder=02&offset=2&limit=2",
 							"host": [
 								"{{host}}"
 							],
@@ -99,6 +99,18 @@
 								{
 									"key": "toDate",
 									"value": "2021-03-19"
+								},
+								{
+									"key": "responder",
+									"value": "02"
+								},
+								{
+									"key": "offset",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
 								}
 							]
 						}
