@@ -119,6 +119,8 @@ namespace AxonCFS.Application.Services
                 query = query.Where(x => x.EventTime <= toDate || x.DispatchTime <= toDate);
             }
 
+            query = query.OrderByDescending(x => x.EventTime);
+
             var total = await query.CountAsync();
 
             if (limit > 0)
